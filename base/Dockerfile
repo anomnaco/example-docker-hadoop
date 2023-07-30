@@ -23,3 +23,6 @@ ENV PATH /hadoop/bin/:$PATH
 COPY core-site.xml /etc/hadoop/
 COPY hdfs-site.xml /etc/hadoop/
 COPY hadoop-env.sh /etc/hadoop/
+
+RUN wget --no-verbose --no-check-certificate https://dlcdn.apache.org/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3.tgz && tar -xvzf spark-3.4.1-bin-hadoop3.tgz
+RUN rm spark-3.4.1-bin-hadoop3.tgz
