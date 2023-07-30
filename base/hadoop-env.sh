@@ -58,7 +58,11 @@ export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/${HADOOP_HDFS_USER}
 # and therefore may override any similar flags set in HADOOP_OPTS
 #
 # export HADOOP_MOVER_OPTS=""
-
+export HDFS_NAMENODE_USER="root"
+export HDFS_DATANODE_USER="root"
+export HDFS_SECONDARYNAMENODE_USER="root"
+#export YARN_RESOURCEMANAGER_USER="root"
+#export YARN_NODEMANAGER_USER="root"
 ###
 # Advanced Users Only!
 ###

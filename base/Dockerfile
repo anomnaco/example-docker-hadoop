@@ -1,5 +1,6 @@
-FROM openjdk:8u222-stretch
+FROM openjdk:8u242-stretch
 
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
 RUN apt-get update && apt-get install -y software-properties-common ssh net-tools ca-certificates tar rsync sed
 
 # passwordless ssh
@@ -10,7 +11,8 @@ COPY config /root/.ssh/
 RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 RUN chmod 0600 ~/.ssh/authorized_keys
 
-RUN wget --no-verbose http://apache-mirror.8birdsvideo.com/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz && tar -xvzf hadoop-2.7.7.tar.gz && mv hadoop-2.7.7 hadoop && rm hadoop-2.7.7.tar.gz && rm -rf hadoop/share/doc/*
+RUN wget --no-verbose --no-check-certificate https://dlcdn.apache.org/hadoop/common/stable/hadoop-3.3.6.tar.gz && tar -xvzf hadoop-3.3.6.tar.gz 
+RUN mv hadoop-3.3.6 hadoop && rm hadoop-3.3.6.tar.gz && rm -rf hadoop/share/doc/*
 RUN ln -s /hadoop/etc/hadoop /etc/hadoop
 RUN mkdir -p /logs
 RUN mkdir /hadoop-data
